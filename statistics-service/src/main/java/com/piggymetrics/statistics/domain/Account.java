@@ -1,5 +1,8 @@
 package com.piggymetrics.statistics.domain;
 
+import java.math.BigDecimal;
+import javax.validation.constraints.DecimalMin;
+
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -23,6 +26,10 @@ public class Account {
 	@NotNull
 	private Saving saving;
 
+	@NotNull
+	@DecimalMin("0")
+	private BigDecimal monthlySavingsGoal;
+
 	public List<Item> getIncomes() {
 		return incomes;
 	}
@@ -45,5 +52,13 @@ public class Account {
 
 	public void setSaving(Saving saving) {
 		this.saving = saving;
+	}
+
+	public BigDecimal getMonthlySavingsGoal() {
+		return monthlySavingsGoal;
+	}
+
+	public void setMonthlySavingsGoal(BigDecimal monthlySavingsGoal) {
+		this.monthlySavingsGoal = monthlySavingsGoal;
 	}
 }
